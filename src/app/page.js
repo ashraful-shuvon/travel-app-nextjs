@@ -1,103 +1,132 @@
+"use client";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [dark, setDark] = useState(false);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+  return (
+    <div className={dark ? "dark" : ""}>
+      <main className="min-h-screen bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors">
+        {/* Navbar */}
+        <header className="px-6 py-4 shadow bg-blue-600 dark:bg-blue-800 text-white">
+          <div className="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 className="text-2xl font-bold">TravelGo</h1>
+            <div className="flex gap-4 items-center">
+              <nav className="hidden md:flex gap-6 text-sm font-medium">
+                <ul className="flex gap-6 font-medium">
+                  <li>
+                    <a href="/about" className="hover:underline">
+                      About
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/explore" className="hover:underline">
+                      Explore
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/contact" className="hover:underline">
+                      Contact
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+              <Button
+                variant="outline"
+                onClick={() => setDark(!dark)}
+                className="text-black"
+              >
+                {dark ? "Light Mode" : "Dark Mode"}
+              </Button>
+            </div>
+          </div>
+        </header>
+
+        {/* Hero Section */}
+        <section className="px-6 py-20 flex flex-col-reverse md:flex-row items-center gap-10">
+          <div className="md:w-1/2 text-center md:text-left">
+            <h2 className="text-4xl font-bold mb-4">Adventure Awaits</h2>
+            <p className="mb-6 text-lg text-gray-600 dark:text-gray-300">
+              Discover top destinations and travel like never before.
+            </p>
+            <Button className="text-lg">Start Your Journey</Button>
+          </div>
+          <div className="md:w-1/2">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/rome.jpg"
+              alt="Hero"
+              width={600}
+              height={400}
+              className="rounded-xl shadow-lg"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section
+          id="features"
+          className="px-6 py-16 bg-gray-100 dark:bg-gray-800"
+        >
+          <div className="max-w-6xl mx-auto text-center">
+            <h3 className="text-3xl font-bold mb-10">Why Choose TravelGo?</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div>
+                <h4 className="text-xl font-semibold mb-2">Best Deals</h4>
+                <p>Access unbeatable offers on flights and hotels.</p>
+              </div>
+              <div>
+                <h4 className="text-xl font-semibold mb-2">Global Support</h4>
+                <p>24/7 customer care wherever you are.</p>
+              </div>
+              <div>
+                <h4 className="text-xl font-semibold mb-2">Custom Packages</h4>
+                <p>Personalize your trip with flexible itineraries.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section
+          id="testimonials"
+          className="px-6 py-16 bg-white dark:bg-gray-900"
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <h3 className="text-3xl font-bold mb-10">What Our Travelers Say</h3>
+            <div className="space-y-8">
+              <blockquote>
+                <p className="italic">
+                  “The best travel experience I've ever had. Everything was
+                  seamless!”
+                </p>
+                <footer className="mt-2 font-semibold">— Sarah A.</footer>
+              </blockquote>
+              <blockquote>
+                <p className="italic">
+                  “TravelGo made my honeymoon unforgettable. Highly
+                  recommended.”
+                </p>
+                <footer className="mt-2 font-semibold">— Mark & Nina</footer>
+              </blockquote>
+            </div>
+          </div>
+        </section>
+
+        {/* Footer */}
+        <footer
+          id="contact"
+          className="bg-blue-600 dark:bg-blue-800 text-white px-6 py-10 mt-12"
+        >
+          <div className="max-w-7xl mx-auto text-center">
+            <p className="mb-2">Contact us: hello@travelgo.com</p>
+            <p>
+              &copy; {new Date().getFullYear()} TravelGo. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
